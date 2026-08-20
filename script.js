@@ -34,4 +34,23 @@ document.addEventListener("DOMContentLoaded", function () {
   }, { rootMargin: "-20% 0px -70% 0px", threshold: 0 });
 
   sections.forEach(function (s) { observer.observe(s); });
+
+  // Gentle scroll-reveal — only runs if motion is allowed, and content is
+  // fully visible without JS or with reduced motion, since the "pre-reveal"
+  // class (the one that hides it) is added here, not baked into the HTML.
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    sections.forEach(function (s) {
+      s.classList.add("pre-reveal");
+      revealObserver.observe(s);
+    });
+  }
 });
