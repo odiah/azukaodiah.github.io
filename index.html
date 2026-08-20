@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<div class="progress-bar" id="progressBar"></div>
+
 <div class="topbar">
   <span class="brand-name">Azuka Odiah</span>
   <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">Menu</button>
@@ -57,10 +59,11 @@
       My tools span behavioral science, statistics, large language models,
       and generative AI.</p>
 
-      <div class="light-cycle" aria-hidden="true">
+      <div class="light-cycle" id="lightCycle" role="button" tabindex="0" aria-label="Click to step through morning, midday, and dusk lighting">
         <span class="tag">morning</span>
         <span class="tag">midday</span>
         <span class="tag">dusk</span>
+        <span class="hint">click to change the light</span>
       </div>
 
       <blockquote>Influenced by Wole Soyinka's philosophy of storytelling, I see
@@ -87,7 +90,7 @@
 
     <!-- ABOUT -->
     <section class="block" id="about">
-      <p class="eyebrow">About</p>
+      <p class="eyebrow"><span class="chapter-num">01</span>About</p>
       <h2>Background</h2>
 
       <div class="about-grid">
@@ -135,7 +138,7 @@
     <!-- AMBIANCE -->
     <section class="block" id="ambiance">
       <div class="block-head oxide">
-        <p class="eyebrow">Research thread</p>
+        <p class="eyebrow"><span class="chapter-num">02</span>Research thread</p>
         <h2>Ambiance</h2>
       </div>
 
@@ -163,6 +166,11 @@
       workplaces, examining how office spaces convey productivity, focus,
       creativity, calm, and collaboration.</p>
 
+      <div class="chart-slot">
+        <span>Reserved for an interactive chart &mdash; e.g. ambiance ratings
+        by design feature. See README for a Chart.js starter snippet.</span>
+      </div>
+
       <p><strong>Methods:</strong> large language models, AI-generated
       environmental descriptions, statistical modeling, and computational
       feature extraction. By identifying patterns across thousands of
@@ -175,7 +183,7 @@
     <!-- PERSONALITY & DESIGN -->
     <section class="block" id="personality">
       <div class="block-head dusk">
-        <p class="eyebrow">Research thread</p>
+        <p class="eyebrow"><span class="chapter-num">03</span>Research thread</p>
         <h2>Personality &amp; Design</h2>
       </div>
 
@@ -202,13 +210,18 @@
         <li>Neuroticism connects to sensitivity to stressors like noise, density, and lack of privacy</li>
       </ul>
 
+      <div class="chart-slot">
+        <span>Reserved for an interactive chart &mdash; e.g. trait-by-preference
+        correlations. See README for a Chart.js starter snippet.</span>
+      </div>
+
       <p>The broader goal is understanding person&ndash;environment fit &mdash;
       how different spaces support different psychological needs.</p>
     </section>
 
     <!-- PUBLICATIONS -->
     <section class="block" id="publications">
-      <p class="eyebrow">Publications</p>
+      <p class="eyebrow"><span class="chapter-num">04</span>Publications</p>
       <h2>Papers &amp; working drafts</h2>
 
       <div class="pub">
@@ -261,7 +274,7 @@
 
     <!-- CV -->
     <section class="block" id="cv">
-      <p class="eyebrow">Curriculum Vitae</p>
+      <p class="eyebrow"><span class="chapter-num">05</span>Curriculum Vitae</p>
       <h2>CV</h2>
       <p>Live view of my CV &mdash; always current, since it pulls directly
       from the Google Doc.</p>
@@ -274,7 +287,7 @@
 
     <!-- CONTACT -->
     <section class="block" id="contact">
-      <p class="eyebrow">Contact</p>
+      <p class="eyebrow"><span class="chapter-num">06</span>Contact</p>
       <h2>Get in touch</h2>
       <p>Open to opportunities for learning and collaboration.</p>
       <div class="link-row">

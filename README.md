@@ -95,6 +95,46 @@ way, so you can add these gradually.
 - [ ] The 4 social links (Google Scholar, ORCID, LinkedIn, ResearchGate) in the sidebar footer and Contact section point to `#` — replace with your real profile URLs
 - [ ] The two `replace with DOI link` links in Publications
 
+## 6. Adding an interactive chart later
+
+Two spots are already reserved in the page — a dashed "chart-slot" box in
+the Ambiance section and one in Personality & Design. When you have real
+data, here's a minimal starting point using Chart.js (no build step,
+works straight in the browser):
+
+```html
+<!-- add once, near the bottom of <head> or right before </body> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+```
+
+```html
+<!-- replace a .chart-slot div with this -->
+<canvas id="ambianceChart" style="max-width:100%;"></canvas>
+<script>
+new Chart(document.getElementById("ambianceChart"), {
+  type: "bar", // or "line", "radar", etc.
+  data: {
+    labels: ["Lighting", "Color", "Layout", "Materials", "Furniture"],
+    datasets: [{
+      label: "Ambiance rating",
+      data: [7.2, 6.8, 8.1, 5.9, 6.4], // swap in your real numbers
+      backgroundColor: "#a8431d"
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } }
+  }
+});
+</script>
+```
+
+A couple of things worth keeping in mind once there's real data: keep a
+plain HTML table with the same numbers somewhere near the chart (screen
+readers and keyboard users can't get much from a canvas element alone),
+and if you ever plot more than one series, distinguish them with line
+style or pattern too, not just color.
+
 ## That's it
 
 No new repo, no renaming — same `odiah.github.io` address. Once you upload

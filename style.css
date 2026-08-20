@@ -29,12 +29,42 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--stone);
+  background: var(--page-bg, var(--stone));
   color: var(--ink);
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.9s ease;
+  position: relative;
+}
+
+/* subtle architectural drafting grid, fixed behind everything */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--ink) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ink) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.035;
+  pointer-events: none;
+}
+
+/* scroll progress bar */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--oxide), var(--dusk));
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar { transition: none; }
 }
 
 img { max-width: 100%; display: block; }
@@ -55,6 +85,12 @@ p { margin: 0 0 1.1em; color: var(--ink-soft); max-width: 62ch; }
   text-transform: uppercase;
   color: var(--ink-soft);
 }
+
+.chapter-num {
+  color: var(--oxide);
+  margin-right: 6px;
+}
+.block-head.dusk .chapter-num { color: var(--dusk); }
 
 /* ---------- layout shell ---------- */
 
@@ -159,18 +195,28 @@ section.block:last-of-type { padding-bottom: 40px; }
 
 .light-cycle {
   position: relative;
+  width: 100%;
   height: 200px;
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid var(--border);
   margin: 22px 0 6px;
   animation: cycleShift 18s ease-in-out infinite;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  transition: box-shadow 0.2s ease;
 }
+.light-cycle:hover { box-shadow: 0 8px 24px rgba(33,29,25,0.12); }
 @keyframes cycleShift {
   0%, 100% { background: linear-gradient(180deg, #f7ecd8 0%, #e7c79e 60%, #cf9a63 100%); }
   40% { background: linear-gradient(180deg, #fbf6ea 0%, #f2e2c2 55%, #dab27b 100%); }
   70% { background: linear-gradient(180deg, #e4dce8 0%, #b9a7bb 55%, #6d5b73 100%); }
 }
+.light-cycle.manual { animation: none; }
+.light-cycle.manual.state-morning { background: linear-gradient(180deg, #f7ecd8 0%, #e7c79e 60%, #cf9a63 100%); }
+.light-cycle.manual.state-midday { background: linear-gradient(180deg, #fbf6ea 0%, #f2e2c2 55%, #dab27b 100%); }
+.light-cycle.manual.state-dusk { background: linear-gradient(180deg, #e4dce8 0%, #b9a7bb 55%, #6d5b73 100%); }
 .light-cycle .tag {
   position: absolute; bottom: 14px; left: 16px;
   font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
@@ -180,6 +226,13 @@ section.block:last-of-type { padding-bottom: 40px; }
 .light-cycle .tag:nth-child(2) { animation: tagFade 18s ease-in-out infinite; animation-delay: -6s; }
 .light-cycle .tag:nth-child(3) { animation: tagFade 18s ease-in-out infinite; animation-delay: -12s; }
 @keyframes tagFade { 0%, 10% { opacity: 1; } 22%, 100% { opacity: 0; } }
+.light-cycle.manual .tag { animation: none; opacity: 0; }
+.light-cycle.manual .tag.active-tag { opacity: 1; }
+.light-cycle .hint {
+  position: absolute; top: 12px; right: 14px;
+  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.04em;
+  color: rgba(33,29,25,0.45);
+}
 @media (prefers-reduced-motion: reduce) {
   .light-cycle { animation: none; }
   .light-cycle .tag { animation: none; }
@@ -287,6 +340,25 @@ figcaption { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft
 
 .pre-reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .pre-reveal.revealed { opacity: 1; transform: none; }
+
+.pre-reveal-item { opacity: 0; transform: translateY(14px); transition: opacity 0.45s ease, transform 0.45s ease; }
+.pre-reveal-item.revealed { opacity: 1; transform: none; }
+
+/* ---------- future data-viz slot ---------- */
+
+.chart-slot {
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  background: var(--paper);
+  padding: 32px 20px;
+  text-align: center;
+  margin: 24px 0;
+}
+.chart-slot span {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
 
 footer { padding-top: 20px; border-top: 1px solid var(--border); }
 footer p { font-size: 0.82rem; }
