@@ -5,29 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Azuka Odiah — Psychology of Architecture</title>
 <meta name="description" content="Azuka Odiah is a Ph.D. candidate studying how the built environment shapes emotion, personality, and behavior.">
+<link rel="icon" type="image/jpeg" href="assets/icon.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="index.html">Azuka Odiah</a>
-    <nav class="primary">
-      <a href="index.html" class="active">Home</a>
-      <a href="ambiance.html">Ambiance</a>
-      <a href="personality-design.html">Personality &amp; Design</a>
-      <a href="publications.html">Publications</a>
-      <a href="cv.html">CV</a>
-    </nav>
-    <button class="nav-toggle" aria-label="Toggle menu">Menu</button>
-  </div>
-</header>
+<div class="topbar">
+  <span class="brand-name">Azuka Odiah</span>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">Menu</button>
+</div>
 
-<section class="hero">
-  <div class="wrap">
-    <div>
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand-row">
+      <div class="avatar-wrap">
+        <span class="fallback">AO</span>
+        <img src="assets/icon.jpg" alt="Azuka Odiah" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <div class="brand-name">Azuka Odiah</div>
+        <div class="brand-role">PhD Candidate, UT Austin</div>
+      </div>
+    </div>
+
+    <nav class="side-nav" id="sideNav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#ambiance">Ambiance</a>
+      <a href="#personality">Personality &amp; Design</a>
+      <a href="#publications">Publications</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="sidebar-foot">azukaodiah@utexas.edu</div>
+  </aside>
+
+  <main>
+
+    <!-- HOME -->
+    <section class="block" id="home">
       <p class="eyebrow">Social &amp; Personality Psychology · UT Austin</p>
       <h1>How do the spaces we live in shape how we feel?</h1>
       <p>I'm a Ph.D. candidate working with Sam Gosling. I study how architectural
@@ -35,83 +55,242 @@
       personality, emotion, and cognition to shape psychological experience.
       My tools span behavioral science, statistics, large language models,
       and generative AI.</p>
+
+      <div class="light-cycle" aria-hidden="true">
+        <span class="tag">morning</span>
+        <span class="tag">midday</span>
+        <span class="tag">dusk</span>
+      </div>
+
       <blockquote>Influenced by Wole Soyinka's philosophy of storytelling, I see
       spaces as narratives &mdash; places where design choices and sensory cues
       create meaning and guide how we live.</blockquote>
+
       <p><span class="currently">Currently: writing up a paper on ambiance in living rooms</span></p>
-    </div>
-    <div class="light-cycle" aria-hidden="true">
-      <span class="caption">a room, over one day</span>
-      <span class="tag">morning</span>
-      <span class="tag">midday</span>
-      <span class="tag">dusk</span>
-    </div>
-  </div>
-</section>
 
-<section>
-  <div class="wrap">
-    <p class="eyebrow">Research</p>
-    <h2>Two threads, one question</h2>
-    <div class="cards">
-      <div class="card">
-        <h3><span class="dot"></span>Ambiance</h3>
-        <p>What specific design elements make a space feel calm, productive,
-        or creative &mdash; and can we characterize that systematically,
-        at scale, using AI?</p>
-        <a class="more" href="ambiance.html">Read more &rarr;</a>
+      <div class="cards">
+        <div class="card">
+          <h3><span class="dot"></span>Ambiance</h3>
+          <p>What makes a space feel calm, productive, or creative &mdash;
+          and can we characterize that systematically?</p>
+          <a href="#ambiance">Jump to section &rarr;</a>
+        </div>
+        <div class="card card--dusk">
+          <h3><span class="dot"></span>Personality &amp; Design</h3>
+          <p>How personality traits map onto preferences for light,
+          density, and structure.</p>
+          <a href="#personality">Jump to section &rarr;</a>
+        </div>
       </div>
-      <div class="card card--dusk">
-        <h3><span class="dot"></span>Personality &amp; Design</h3>
-        <p>Why extraverts gravitate to bright, open spaces, and how personality
-        traits map onto preferences for light, density, and structure.</p>
-        <a class="more" href="personality-design.html">Read more &rarr;</a>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="block" id="about">
+      <p class="eyebrow">About</p>
+      <h2>Background</h2>
+
+      <div class="about-grid">
+        <figure>
+          <div class="photo-slot">
+            <span>Add photo:<br>your selfie / portrait</span>
+            <img src="assets/selfie.jpg" alt="Azuka Odiah portrait" onerror="this.style.display='none'">
+          </div>
+        </figure>
+        <div>
+          <p>I grew up in Lagos, Nigeria, and trained in architecture at the
+          University of Lagos before moving into psychology &mdash; which is
+          how I ended up studying the emotional life of buildings rather
+          than designing them.</p>
+          <p>Outside of research, I swim, bike around Austin, collect
+          African paintings, and sing with a jazz band.</p>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<section id="about">
-  <div class="wrap">
-    <p class="eyebrow">About</p>
-    <h2>Background</h2>
-    <p>I grew up in Lagos, Nigeria, and trained in architecture at the
-    University of Lagos before moving into psychology &mdash; which is how I
-    ended up studying the emotional life of buildings rather than designing
-    them. Outside of research, I swim, bike around Austin, collect African
-    paintings, and sing with a jazz band.</p>
+      <div class="photo-strip">
+        <figure>
+          <div class="photo-slot">
+            <span>Add photo:<br>singing with the band</span>
+            <img src="assets/hobby-band.jpg" alt="" onerror="this.style.display='none'">
+          </div>
+          <figcaption>Singing with my band at a jazz bar downtown</figcaption>
+        </figure>
+        <figure>
+          <div class="photo-slot">
+            <span>Add photo:<br>a painting from your collection</span>
+            <img src="assets/hobby-painting.jpg" alt="" onerror="this.style.display='none'">
+          </div>
+          <figcaption>Part of my growing African painting collection</figcaption>
+        </figure>
+        <figure>
+          <div class="photo-slot">
+            <span>Add photo:<br>biking in Austin</span>
+            <img src="assets/hobby-bike.jpg" alt="" onerror="this.style.display='none'">
+          </div>
+          <figcaption>Exploring Austin by bike</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <div class="photo-strip">
-      <figure>
-        <div class="photo-slot"><span>Add photo:<br>singing with the band</span></div>
-        <figcaption>Singing with my band at a jazz bar downtown</figcaption>
-      </figure>
-      <figure>
-        <div class="photo-slot"><span>Add photo:<br>a painting from your collection</span></div>
-        <figcaption>Part of my growing African painting collection</figcaption>
-      </figure>
-      <figure>
-        <div class="photo-slot"><span>Add photo:<br>biking in Austin</span></div>
-        <figcaption>Exploring Austin by bike</figcaption>
-      </figure>
-    </div>
+    <!-- AMBIANCE -->
+    <section class="block" id="ambiance">
+      <div class="block-head oxide">
+        <p class="eyebrow">Research thread</p>
+        <h2>Ambiance</h2>
+      </div>
 
-    <p style="margin-top:24px;">Open to opportunities for learning and collaboration.</p>
-    <div class="link-row">
-      <a href="mailto:azukaodiah@utexas.edu">Email</a>
-      <a href="#">Google Scholar</a>
-      <a href="#">ORCID</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">ResearchGate</a>
-    </div>
-  </div>
-</section>
+      <div class="photo-slot research-header oxide">
+        <span>Add header image:<br>assets/research-ambiance.jpg</span>
+        <img src="assets/research-ambiance.jpg" alt="" onerror="this.style.display='none'">
+      </div>
 
-<footer>
-  <div class="wrap">
-    <p>&copy; <span id="year"></span> Azuka Odiah. Built with plain HTML &amp; CSS.</p>
-  </div>
-</footer>
+      <p>People often describe environments in emotional terms &mdash; cozy,
+      calm, inviting, productive, stressful. Despite how central these
+      impressions are to everyday life, we still know surprisingly little
+      about which design choices create them. My research asks:</p>
+
+      <ul class="rq-list">
+        <li>What specific design elements make a space feel relaxing, productive, or creative?</li>
+        <li>Which features recur across different emotional environments?</li>
+        <li>How can we systematically characterize ambiance?</li>
+        <li>How do personality, culture, age, and context shape these experiences?</li>
+      </ul>
+
+      <p>To study this, I build and analyze large datasets of environmental
+      descriptions and design features &mdash; covering lighting, color,
+      layout, materials, furniture, and spatial organization. One current
+      project focuses on living rooms; a second extends this framework to
+      workplaces, examining how office spaces convey productivity, focus,
+      creativity, calm, and collaboration.</p>
+
+      <p><strong>Methods:</strong> large language models, AI-generated
+      environmental descriptions, statistical modeling, and computational
+      feature extraction. By identifying patterns across thousands of
+      descriptions, this work moves beyond intuition toward a systematic
+      understanding of how spaces generate emotional experience &mdash; with
+      the long-term goal of designing environments that better support
+      well-being, productivity, and everyday psychological functioning.</p>
+    </section>
+
+    <!-- PERSONALITY & DESIGN -->
+    <section class="block" id="personality">
+      <div class="block-head dusk">
+        <p class="eyebrow">Research thread</p>
+        <h2>Personality &amp; Design</h2>
+      </div>
+
+      <div class="photo-slot research-header dusk">
+        <span>Add header image:<br>assets/research-personality.jpg</span>
+        <img src="assets/research-personality.jpg" alt="" onerror="this.style.display='none'">
+      </div>
+
+      <p>People differ in the spaces they prefer &mdash; some are drawn to
+      bright, open, socially stimulating environments; others to quieter,
+      more structured, or visually complex spaces. My work investigates how
+      personality traits relate to design preferences across lighting,
+      openness, density, color, furniture, architectural style, and
+      organization.</p>
+
+      <p>I conducted an interdisciplinary review spanning psychology,
+      environmental psychology, architecture, interior design, and urban
+      studies. Emerging patterns suggest:</p>
+
+      <ul class="rq-list">
+        <li>Extraversion is associated with brighter, more open, socially stimulating spaces</li>
+        <li>Conscientiousness relates to orderly, structured environments</li>
+        <li>Openness to Experience links to novelty, abstraction, and visual complexity</li>
+        <li>Neuroticism connects to sensitivity to stressors like noise, density, and lack of privacy</li>
+      </ul>
+
+      <p>The broader goal is understanding person&ndash;environment fit &mdash;
+      how different spaces support different psychological needs.</p>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section class="block" id="publications">
+      <p class="eyebrow">Publications</p>
+      <h2>Papers &amp; working drafts</h2>
+
+      <div class="pub">
+        <img class="pub-thumb" src="assets/pub-1.jpg" alt="" onerror="this.remove()">
+        <div>
+          <span class="year">2026 &middot; in prep</span>
+          <p><strong>Odiah, A.</strong>, &amp; Gosling, S.D. Mapping ambiances in the
+          built environment: An exploration into the psychology of architecture.</p>
+          <p class="note">Building a systematic framework for how design features
+          combine to create emotional "ambiances" in everyday spaces.</p>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="assets/pub-2.jpg" alt="" onerror="this.remove()">
+        <div>
+          <span class="year">2026 &middot; in prep</span>
+          <p><strong>Odiah, A.</strong>, &amp; Gosling, S.D. Personality traits and
+          design preferences in the built environment: A comprehensive review.
+          <em>Psychological Science.</em></p>
+          <p class="note">A review connecting personality traits to preferences
+          for specific architectural and interior design features.</p>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="assets/pub-3.jpg" alt="" onerror="this.remove()">
+        <div>
+          <span class="year">2025</span>
+          <p><strong>Odiah, A.</strong>, Țenea, S.A., &amp; Gosling, S.D. What makes
+          a room a room for living? In H. Chai, D.W.N. Bao, Z. Guo, &amp; P.F. Yuan
+          (Eds.), <em>Symbiotic Intelligence.</em> CDRF 2024. Computational Design
+          and Robotic Fabrication. Springer, Singapore.
+          &mdash; <a href="#">replace with DOI link</a></p>
+        </div>
+      </div>
+
+      <div class="pub">
+        <img class="pub-thumb" src="assets/pub-4.jpg" alt="" onerror="this.remove()">
+        <div>
+          <span class="year">2024</span>
+          <p><strong>Odiah, A.</strong>, &amp; Gosling, S.D. Laying the foundations
+          for using generative AI images in architectural research: Do images
+          convey the intended spaces and ambiances? <em>Architectural
+          Intelligence,</em> 3, 35.
+          &mdash; <a href="#">replace with DOI link</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CV -->
+    <section class="block" id="cv">
+      <p class="eyebrow">Curriculum Vitae</p>
+      <h2>CV</h2>
+      <p>Live view of my CV &mdash; always current, since it pulls directly
+      from the Google Doc.</p>
+
+      <div class="doc-embed">
+        <iframe src="https://docs.google.com/document/d/1RREOyUHriKB7UtC-24r1hGiQHFxX-D9EY5F3DZR8iyM/preview" title="Azuka Odiah CV"></iframe>
+      </div>
+      <p><a href="https://docs.google.com/document/d/1RREOyUHriKB7UtC-24r1hGiQHFxX-D9EY5F3DZR8iyM/edit" target="_blank" rel="noopener">Open in Google Docs &#8599;</a></p>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="block" id="contact">
+      <p class="eyebrow">Contact</p>
+      <h2>Get in touch</h2>
+      <p>Open to opportunities for learning and collaboration.</p>
+      <div class="link-row">
+        <a href="mailto:azukaodiah@utexas.edu">Email</a>
+        <a href="#">Google Scholar</a>
+        <a href="#">ORCID</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">ResearchGate</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; <span id="year"></span> Azuka Odiah.</p>
+    </footer>
+
+  </main>
+</div>
 
 <script src="script.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
