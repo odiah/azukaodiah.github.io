@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV — Azuka Odiah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Azuka Odiah</a>
+    <nav class="primary">
+      <a href="index.html">Home</a>
+      <a href="ambiance.html">Ambiance</a>
+      <a href="personality-design.html">Personality &amp; Design</a>
+      <a href="publications.html">Publications</a>
+      <a href="cv.html" class="active">CV</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu">Menu</button>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <p class="eyebrow">Curriculum Vitae</p>
+    <h1>CV</h1>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p>Ph.D. candidate in Social and Personality Psychology, University of
+    Texas at Austin, advised by Sam Gosling. Full CV available as a PDF
+    below &mdash; add your own file to keep this page current each
+    semester.</p>
+
+    <p><a class="btn" href="assets/Azuka_Odiah_CV.pdf" download>Download CV (PDF)</a></p>
+
+    <p style="margin-top:32px;"><em>Note: this button currently points to
+    <code>assets/Azuka_Odiah_CV.pdf</code>, which doesn't exist yet &mdash;
+    add your CV file at that path in the repo and it will work.</em></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; <span id="year"></span> Azuka Odiah.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

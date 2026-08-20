@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azuka Odiah — Psychology of Architecture</title>
+<meta name="description" content="Azuka Odiah is a Ph.D. candidate studying how the built environment shapes emotion, personality, and behavior.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Azuka Odiah</a>
+    <nav class="primary">
+      <a href="index.html" class="active">Home</a>
+      <a href="ambiance.html">Ambiance</a>
+      <a href="personality-design.html">Personality &amp; Design</a>
+      <a href="publications.html">Publications</a>
+      <a href="cv.html">CV</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu">Menu</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Social &amp; Personality Psychology · UT Austin</p>
+      <h1>How do the spaces we live in shape how we feel?</h1>
+      <p>I'm a Ph.D. candidate working with Sam Gosling. I study how architectural
+      design &mdash; lighting, layout, color, materials &mdash; interacts with
+      personality, emotion, and cognition to shape psychological experience.
+      My tools span behavioral science, statistics, large language models,
+      and generative AI.</p>
+      <blockquote>Influenced by Wole Soyinka's philosophy of storytelling, I see
+      spaces as narratives &mdash; places where design choices and sensory cues
+      create meaning and guide how we live.</blockquote>
+      <p><span class="currently">Currently: writing up a paper on ambiance in living rooms</span></p>
+    </div>
+    <div class="light-cycle" aria-hidden="true">
+      <span class="caption">a room, over one day</span>
+      <span class="tag">morning</span>
+      <span class="tag">midday</span>
+      <span class="tag">dusk</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Research</p>
+    <h2>Two threads, one question</h2>
+    <div class="cards">
+      <div class="card">
+        <h3><span class="dot"></span>Ambiance</h3>
+        <p>What specific design elements make a space feel calm, productive,
+        or creative &mdash; and can we characterize that systematically,
+        at scale, using AI?</p>
+        <a class="more" href="ambiance.html">Read more &rarr;</a>
+      </div>
+      <div class="card card--dusk">
+        <h3><span class="dot"></span>Personality &amp; Design</h3>
+        <p>Why extraverts gravitate to bright, open spaces, and how personality
+        traits map onto preferences for light, density, and structure.</p>
+        <a class="more" href="personality-design.html">Read more &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow">About</p>
+    <h2>Background</h2>
+    <p>I grew up in Lagos, Nigeria, and trained in architecture at the
+    University of Lagos before moving into psychology &mdash; which is how I
+    ended up studying the emotional life of buildings rather than designing
+    them. Outside of research, I swim, bike around Austin, collect African
+    paintings, and sing with a jazz band.</p>
+
+    <div class="photo-strip">
+      <figure>
+        <div class="photo-slot"><span>Add photo:<br>singing with the band</span></div>
+        <figcaption>Singing with my band at a jazz bar downtown</figcaption>
+      </figure>
+      <figure>
+        <div class="photo-slot"><span>Add photo:<br>a painting from your collection</span></div>
+        <figcaption>Part of my growing African painting collection</figcaption>
+      </figure>
+      <figure>
+        <div class="photo-slot"><span>Add photo:<br>biking in Austin</span></div>
+        <figcaption>Exploring Austin by bike</figcaption>
+      </figure>
+    </div>
+
+    <p style="margin-top:24px;">Open to opportunities for learning and collaboration.</p>
+    <div class="link-row">
+      <a href="mailto:azukaodiah@utexas.edu">Email</a>
+      <a href="#">Google Scholar</a>
+      <a href="#">ORCID</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">ResearchGate</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; <span id="year"></span> Azuka Odiah. Built with plain HTML &amp; CSS.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
