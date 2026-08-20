@@ -14,21 +14,86 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Section mood colors — a soft echo of each section's own accent,
-  // so the page background gently shifts as you scroll, like walking
-  // through rooms with different light.
-  var sectionBg = {
-    home: "#eae4da",
+  // Section mood colors — a soft echo of each section's own accent. These
+  // sit BETWEEN the two fixed bookends: white at the very top of the page,
+  // black at the very bottom, no matter how many sections exist or how
+  // long the page is — because the first and last stops below are computed
+  // from actual scroll position (0 and max), not from section identity.
+  var midColors = {
     about: "#f0e9dc",
     ambiance: "#f3e2d2",
     personality: "#e4e9ec",
     publications: "#ece7dc",
-    cv: "#efebe2",
-    contact: "#e9e2d5"
+    cv: "#efebe2"
   };
+  var WHITE = [255, 255, 255];
+  var BLACK = [20, 16, 12]; // #14100c — near-black, warm to match the ink hue
+
+  var INK = [33, 29, 25];        // --ink
+  var INK_SOFT = [88, 82, 74];   // --ink-soft
+  var OXIDE = [168, 67, 29];     // --oxide
+  var LIGHT_TEXT = [251, 249, 245];   // --paper, used as light text on black
+  var LIGHT_TEXT_SOFT = [201, 194, 181]; // muted light warm gray
+  var LIGHT_LINK = [224, 145, 106];   // lightened oxide, readable on black
+
+  function hexToRgb(hex) {
+    var n = parseInt(hex.slice(1), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function lerpRgb(c1, c2, t) {
+    return "rgb(" + Math.round(lerp(c1[0], c2[0], t)) + "," +
+                     Math.round(lerp(c1[1], c2[1], t)) + "," +
+                     Math.round(lerp(c1[2], c2[2], t)) + ")";
+  }
 
   var links = document.querySelectorAll("#sideNav a");
   var sections = document.querySelectorAll("section.block");
+  var root = document.documentElement;
+
+  var stops = []; // [{ pos: scrollY, color: [r,g,b] }, ...]
+
+  function buildStops() {
+    stops = [];
+    var maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    var list = Array.prototype.slice.call(sections);
+    list.forEach(function (s, i) {
+      var pos;
+      if (i === 0) pos = 0;
+      else if (i === list.length - 1) pos = maxScroll;
+      else pos = s.offsetTop;
+
+      var color;
+      if (i === 0) color = WHITE;
+      else if (i === list.length - 1) color = BLACK;
+      else color = hexToRgb(midColors[s.id] || "#eae4da");
+
+      stops.push({ pos: pos, color: color });
+    });
+  }
+
+  function updatePageColor() {
+    if (!stops.length) return;
+    var y = window.scrollY;
+    var segIdx = 0;
+    for (var i = 0; i < stops.length - 1; i++) {
+      segIdx = i;
+      if (y <= stops[i + 1].pos) break;
+    }
+    var a = stops[segIdx], b = stops[segIdx + 1] || a;
+    var span = b.pos - a.pos;
+    var t = span > 0 ? Math.min(1, Math.max(0, (y - a.pos) / span)) : 1;
+
+    root.style.setProperty("--page-bg", lerpRgb(a.color, b.color, t));
+
+    // Text only inverts within the FINAL segment (cv → black), since every
+    // earlier stop is a light color where dark ink is always readable.
+    var isFinalSegment = segIdx === stops.length - 2;
+    var textT = isFinalSegment ? t : 0;
+    root.style.setProperty("--text-primary", lerpRgb(INK, LIGHT_TEXT, textT));
+    root.style.setProperty("--text-secondary", lerpRgb(INK_SOFT, LIGHT_TEXT_SOFT, textT));
+    root.style.setProperty("--link-color", lerpRgb(OXIDE, LIGHT_LINK, textT));
+  }
 
   if (links.length && sections.length) {
     var map = {};
@@ -36,44 +101,47 @@ document.addEventListener("DOMContentLoaded", function () {
       map[link.getAttribute("href").slice(1)] = link;
     });
 
-    var observer = new IntersectionObserver(function (entries) {
+    var navObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         var link = map[entry.target.id];
         if (!link) return;
         if (entry.isIntersecting) {
           links.forEach(function (l) { l.classList.remove("active"); });
           link.classList.add("active");
-
-          var color = sectionBg[entry.target.id];
-          if (color) document.documentElement.style.setProperty("--page-bg", color);
         }
       });
     }, { rootMargin: "-20% 0px -70% 0px", threshold: 0 });
 
-    sections.forEach(function (s) { observer.observe(s); });
+    sections.forEach(function (s) { navObserver.observe(s); });
+
+    buildStops();
+    updatePageColor();
   }
 
-  // Scroll progress bar
+  // Scroll progress bar + page color, batched into one rAF-throttled handler
   var progressBar = document.getElementById("progressBar");
-  if (progressBar) {
-    var updateProgress = function () {
-      var scrollTop = window.scrollY;
-      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      progressBar.style.width = pct + "%";
-    };
-    var ticking = false;
-    window.addEventListener("scroll", function () {
-      if (!ticking) {
-        window.requestAnimationFrame(function () {
-          updateProgress();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-    updateProgress();
+  var ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        if (progressBar) {
+          var scrollTop = window.scrollY;
+          var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          progressBar.style.width = pct + "%";
+        }
+        updatePageColor();
+        ticking = false;
+      });
+      ticking = true;
+    }
   }
+  window.addEventListener("scroll", onScroll);
+  window.addEventListener("resize", function () {
+    buildStops();
+    onScroll();
+  });
+  onScroll();
 
   // Interactive light-cycle — click or press Enter/Space to step through
   // morning / midday / dusk manually instead of the automatic loop.

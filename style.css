@@ -22,6 +22,14 @@
   --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: "IBM Plex Mono", "SF Mono", monospace;
   --sidebar-w: 250px;
+
+  /* the page-level gradient: white at the very top, black at the very
+     bottom, everything above stays in between. JS overrides these three
+     on <html> as you scroll — the defaults here are just the fallback. */
+  --page-bg: #ffffff;
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-soft);
+  --link-color: var(--oxide);
 }
 
 * { box-sizing: border-box; }
@@ -29,13 +37,12 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--page-bg, var(--stone));
-  color: var(--ink);
+  background: var(--page-bg);
+  color: var(--text-primary);
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.9s ease;
   position: relative;
 }
 
@@ -68,22 +75,22 @@ body::before {
 }
 
 img { max-width: 100%; display: block; }
-a { color: var(--oxide); text-decoration: none; }
+a { color: var(--link-color); text-decoration: none; }
 a:hover { text-decoration: underline; }
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 
-h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.15; margin: 0 0 0.5em; color: var(--ink); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.15; margin: 0 0 0.5em; color: var(--text-primary); }
 h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; }
 h2 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
 h3 { font-size: 1.1rem; font-weight: 600; }
-p { margin: 0 0 1.1em; color: var(--ink-soft); max-width: 62ch; }
+p { margin: 0 0 1.1em; color: var(--text-secondary); max-width: 62ch; }
 
 .eyebrow {
   font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--text-secondary);
 }
 
 .chapter-num {
@@ -263,10 +270,11 @@ blockquote {
 }
 .card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(33,29,25,0.09); }
 .card--dusk { border-top-color: var(--dusk); }
-.card h3 { display: flex; align-items: center; gap: 8px; }
+.card h3 { display: flex; align-items: center; gap: 8px; color: var(--ink); }
+.card p { color: var(--ink-soft); }
 .card .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--oxide); }
 .card--dusk .dot { background: var(--dusk); }
-.card a { font-family: var(--mono); font-size: 0.8rem; }
+.card a { font-family: var(--mono); font-size: 0.8rem; color: var(--oxide); }
 .card--dusk a { color: var(--dusk); }
 
 /* ---------- photo slots ---------- */
@@ -330,11 +338,11 @@ figcaption { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft
 
 .link-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
 .link-row a {
-  font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft);
+  font-family: var(--mono); font-size: 0.8rem; color: var(--text-secondary);
   border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
-.link-row a:hover { color: var(--ink); border-color: var(--ink); text-decoration: none; }
+.link-row a:hover { color: var(--text-primary); border-color: var(--text-primary); text-decoration: none; }
 
 /* ---------- scroll reveal (JS-added classes only — content is visible by default) ---------- */
 

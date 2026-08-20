@@ -135,6 +135,27 @@ readers and keyboard users can't get much from a canvas element alone),
 and if you ever plot more than one series, distinguish them with line
 style or pattern too, not just color.
 
+## Color system — how the white → black scroll works
+
+The background is anchored to actual scroll position, not fixed pixel
+values, so it always starts white at the very top and ends black at the
+very bottom, no matter how long you make the page:
+
+- The **first** `<section class="block">` is always white.
+- The **last** one is always black.
+- Everything in between uses the mid-tone colors already defined in
+  `script.js` (the `midColors` object, keyed by section `id`).
+
+If you add a new section later, give it a `class="block"` and an `id`,
+add a matching entry to `midColors` (or it'll fall back to a neutral
+tone), and add it to the sidebar nav — the white/black bookends adjust
+automatically since they're computed from your actual page length, not
+hardcoded.
+
+Text color (headings, paragraphs, links) only inverts to light in the
+final stretch as the background nears black — everywhere else it stays
+dark for readability, since every other stop is a light color.
+
 ## That's it
 
 No new repo, no renaming — same `odiah.github.io` address. Once you upload
